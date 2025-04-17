@@ -7,6 +7,7 @@ import Menu from './sections/Menu';
 import Cart from './sections/Cart';
 import Footer from './sections/Footer';
 import Accept from './sections/Accept';
+import Perdun from './sections/Perdun'; // Імпортуйте компонент Perdun
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -89,6 +90,7 @@ function App() {
           }
         />
         <Route path="/accept" element={<Accept cart={cart} setCart={setCart} />} />
+        <Route path="/perdun" element={<Perdun />} />
       </Routes>
     </Router>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png'; // Замініть шлях на актуальний для вашого логотипу
 
 export default function Footer() {
@@ -20,22 +21,18 @@ export default function Footer() {
 
                     {/* Соціальні мережі */}
                     <div className="flex space-x-4 mt-4 md:mt-0">
-                        <a
-                            href="#"
-                            className="text-gray-400 hover:text-white transition"
-                            aria-label="Facebook"
-                        >
+                        <Link to="/perdun" className="text-gray-400 hover:text-white transition">
                             Facebook
-                        </a>
+                        </Link>
                         <a
-                            href="#"
+                            href="https://www.youtube.com/shorts/Akoc41F7P_4"
                             className="text-gray-400 hover:text-white transition"
                             aria-label="Instagram"
                         >
                             Instagram
                         </a>
                         <a
-                            href="#"
+                            href="https://www.youtube.com/watch?v=2WG8VrXo9Nc&ab_channel=DrueLanglois"
                             className="text-gray-400 hover:text-white transition"
                             aria-label="Twitter"
                         >
