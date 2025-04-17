@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './sections/Navbar';
 import './App.css';
 import Home from './sections/Home';
-import Constructor from './sections/Constructor';
 import Menu from './sections/Menu';
 import Cart from './sections/Cart';
-import MenuCard from './UI/MenuCard';
 import Footer from './sections/Footer';
+import Accept from './sections/Accept';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,7 +37,6 @@ function App() {
   // Функція для додавання піци до корзини
   const addToCart = (pizza) => {
     setCart((prevCart) => {
-      // Перевіряємо, чи є піца з такими ж добавками в корзині
       const existingPizza = prevCart.find(
         (item) =>
           item.name === pizza.name &&
@@ -45,7 +44,7 @@ function App() {
       );
 
       if (existingPizza) {
-        // Якщо піца з такими ж добавками вже є, збільшуємо її кількість
+        // Якщо піца вже є в корзині, збільшуємо її кількість
         return prevCart.map((item) =>
           item.name === pizza.name &&
             JSON.stringify(item.addons || {}) === JSON.stringify(pizza.addons || {})
@@ -53,18 +52,16 @@ function App() {
             : item
         );
       } else {
-        // Якщо піци з такими добавками немає, додаємо її як новий елемент
+        // Якщо піци немає в корзині, додаємо її з кількістю 1
         return [...prevCart, { ...pizza, quantity: 1 }];
       }
     });
-
-    // Запускаємо анімацію
     setAnimateCart(true);
-    setTimeout(() => setAnimateCart(false), 300); // Зупиняємо анімацію через 300 мс
+    setTimeout(() => setAnimateCart(false), 300);
   };
 
   return (
-    <>
+    <Router>
       <Navbar
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
@@ -74,11 +71,26 @@ function App() {
         animateCart={animateCart} // Передаємо стан анімації
       />
 
-      <Home />
-      <Menu addToCart={addToCart} /> {/* Передаємо функцію в Menu */}
-      <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} cart={cart} setCart={setCart} />
-      <Footer />
-    </>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Home />
+              <Menu addToCart={addToCart} />
+              <Cart
+                isCartOpen={isCartOpen}
+                setIsCartOpen={setIsCartOpen}
+                cart={cart}
+                setCart={setCart}
+              />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/accept" element={<Accept cart={cart} setCart={setCart} />} />
+      </Routes>
+    </Router>
   );
 }
 

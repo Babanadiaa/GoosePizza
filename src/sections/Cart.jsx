@@ -1,8 +1,15 @@
 import React from 'react';
 import { IoIosClose } from "react-icons/io";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart({ isCartOpen, setIsCartOpen, cart = [], setCart }) {
+    const navigate = useNavigate();
+
+    const handleOrder = () => {
+        setIsCartOpen(false); // Закриваємо корзину
+        navigate('/accept'); // Переходимо на сторінку оформлення замовлення
+    };
+
     if (!isCartOpen) return null;
 
     const updateAddon = (index, addon, change) => {
@@ -134,7 +141,7 @@ export default function Cart({ isCartOpen, setIsCartOpen, cart = [], setCart }) 
                         </ul>
                         <div className="mt-4 flex items-center justify-center">
                             <button
-                                onClick={() => alert('Замовлення оформлено!')}
+                                onClick={handleOrder}
                                 className="w-[75%] px-4 py-3 bg-green-500 text-white rounded-lg hover:bg-green-700"
                             >
                                 Оформити замовлення {cart.reduce((total, item) => total + item.price * (item.quantity || 1), 0)} ₴
