@@ -203,7 +203,7 @@ export default function MenuCard({ addToCart }) {
                     <div className="flex">
                         <button
                             type="button"
-                            className={`w-[50%] py-3 rounded-bl-2xl bg-orange-500 text-white text-xl hover:bg-orange-800 transition-all relative ${checkmarks[index] ? 'bg-green-500' : ''
+                            className={` cursor-pointer w-[50%] py-3 rounded-bl-2xl bg-orange-500 text-white text-xl hover:bg-orange-800 transition-all relative ${checkmarks[index] ? 'bg-green-500' : ''
                                 }`}
                             onClick={() => handleButtonClick(index, arg)}
                         >
@@ -216,7 +216,7 @@ export default function MenuCard({ addToCart }) {
                         </button>
                         <button
                             type="button"
-                            className="w-[50%] py-3 rounded-br-2xl bg-orange-500 text-white text-xl hover:bg-orange-800 transition-all border-l-1"
+                            className=" cursor-pointer w-[50%] py-3 rounded-br-2xl bg-orange-500 text-white text-xl hover:bg-orange-800 transition-all border-l-1"
                             onClick={() => {
                                 setSelectedPizza({ ...arg });
                                 setShowAddons(true);

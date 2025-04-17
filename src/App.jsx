@@ -6,6 +6,7 @@ import Constructor from './sections/Constructor';
 import Menu from './sections/Menu';
 import Cart from './sections/Cart';
 import MenuCard from './UI/MenuCard';
+import Footer from './sections/Footer';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,9 +76,8 @@ function App() {
 
       <Home />
       <Menu addToCart={addToCart} /> {/* Передаємо функцію в Menu */}
-      <Constructor />
       <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} cart={cart} setCart={setCart} />
-      <MenuCard addToCart={addToCart} />
+      <Footer />
     </>
   );
 }
